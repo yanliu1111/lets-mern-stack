@@ -23,8 +23,9 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 // Use root routes
 app.use('/', require('./routes/root'));
+app.use('/users', require('./routes/userRoutes'));
 
-// Handle 404 errors
+// Handle 404 errorss
 app.all(/.*/, (req, res) => {  // ✅ also safe
   res.status(404).send('404 Not Found');
 });
