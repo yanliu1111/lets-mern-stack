@@ -24,16 +24,16 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 // Use root routes
 app.use('/', require('./routes/root'));
 app.use('/users', require('./routes/userRoutes'));
-
+app.use('/notes', require('./routes/noteRoutes'));
 // Handle 404 errorss
 app.all(/.*/, (req, res) => {  // ✅ also safe
   res.status(404).send('404 Not Found');
 });
-app.use(errorHandler); // Use the error handler middleware
+
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
 
 app.use(errorHandler)
 
@@ -46,4 +46,4 @@ mongoose.connection.on('error', err => {
     console.log(err)
     logEvents(`${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`, 'mongoErrLog.log')
 })
-console.log('Database URI:', process.env.DATABASE_URI || process.env.DATABASE_URL);
+// console.log('Database URI:', process.env.DATABASE_URI || process.env.DATABASE_URL);
