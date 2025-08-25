@@ -1,3 +1,4 @@
+require('dotenv').config(); 
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -7,6 +8,8 @@ const errorHandler = require('./middleware/errorHandler');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
+
+console.log(process.env.NODE_ENV); // Log the current environment
 
 app.use(logger); // Use the logger middleware
 app.use(cors(corsOptions)); // Enable CORS for all routes
