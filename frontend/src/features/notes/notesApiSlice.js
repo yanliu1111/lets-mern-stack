@@ -5,8 +5,9 @@ import {
 
 import { apiSlice } from "../../app/api/apiSlice"
 
+// sorted by completed status, open first
 const notesAdapter = createEntityAdapter({
-  sortComparer: (a, b) => (a.completed === b.completed) ? 0 : a.completed ? 1 : -1
+  sortComparer: (a, b) => (a.completed === b.completed) ? 0 : a.completed ? 1 : -1 //if a and b are same, return 0, if a is completed, return 1 (b first), else -1 (a first). open is -1, completed is 1, the lower the value, the earlier it appears
 })
 
 const initialState = notesAdapter.getInitialState()
