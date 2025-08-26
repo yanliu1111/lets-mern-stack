@@ -5,11 +5,11 @@ import {
 
 import { apiSlice } from "../../app/api/apiSlice"
 
-const usersAdapter = createEntityAdapter({})
+const usersAdapter = createEntityAdapter({}) //use id as default selectId for users(entity adapter)
 
 const initialState = usersAdapter.getInitialState()
 
-export const usersApiSlice = apiSlice.injectEndpoints({
+export const usersApiSlice = apiSlice.injectEndpoints({ //inject endpoints to existing apiSlice
   endpoints: builder => ({
       getUsers: builder.query({
           query: () => '/users',
