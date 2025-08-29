@@ -21,6 +21,21 @@
 19. [ ] Only Managers and Admins can **create** new users 
 20. [x] Desktop mode is most important but should be available in **mobile** 
 
+## Tech Stack:
+- React
+- Redux Toolkit (RTK) with RTK Query
+- React Router
+- MongoDB with Mongoose
+- Express
+- Node.js (v20.10.0)
+- Middleware
+- Controllers
+- CORS
+- bcrypt for password hashing
+- Authentication vs Authorization
+- JWT for authentication
+- Roles & Permissions
+
 ## Case study: 
 ### Case 1: Extending Data Cache Duration with Prefetching in RTK Query
 
