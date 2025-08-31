@@ -81,7 +81,14 @@ const {
 });
 ```
 
-
+### Learning JWT Authentication and Authorization
+- JWT is Json Web Token, access token and a refresh token
+- Access token is short lived, usually 15 minutes to an hour
+- Refresh token is long lived, usually a week or more
+- Access token: sent as Json client stores in memory Do NOT store in local storage or cookies
+- Refresh token: sent as HttpOnly cookie, not accessible from JS, Must have expiry at some point
+- Access Token: Issued after Authentication, Client uses for API Access until expires, Verified with Middleware, New token issued with Refresh Token
+- Refresh Token: Issued along with Access Token, Sent as HttpOnly cookie, Used to obtain new Access Token when expired, Verified with Middleware
 
 
 
