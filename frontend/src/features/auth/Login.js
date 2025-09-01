@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { setCredentials } from './authSlice'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from './authApiSlice'
+import usePersist from '../../hooks/usePersist'
 
 const Login = () => {
     const userRef = useRef() // set the focus on the username input when the component loads
@@ -11,7 +12,7 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errMsg, setErrMsg] = useState('')
-
+    const [persist, setPersist] = usePersist()
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -50,7 +51,7 @@ const Login = () => {
 
     const handleUserInput = (e) => setUsername(e.target.value)
     const handlePwdInput = (e) => setPassword(e.target.value)
-
+    const handleToggle = () => setPersist(prev => !prev) // checkbox to persist login
     const errClass = errMsg ? "errmsg" : "offscreen"
 
     if (isLoading) return <p>Loading...</p>
@@ -86,6 +87,16 @@ const Login = () => {
                         required
                     />
                     <button className="form__submit-button">Sign In</button>
+                    <label htmlFor="persist" className="form__persist">
+                        <input
+                            type="checkbox"
+                            className="form__checkbox"
+                            id="persist"
+                            onChange={handleToggle}
+                            checked={persist}
+                        />
+                        Trust This Device
+                    </label>
                 </form>
             </main>
             <footer>
