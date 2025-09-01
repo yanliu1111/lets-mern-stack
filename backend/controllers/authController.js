@@ -31,13 +31,13 @@ const login = asyncHandler(async (req, res) => {
           }
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '1m' }
+      { expiresIn: '10s' }
   )
 
   const refreshToken = jwt.sign(
       { "username": foundUser.username },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: '1d' }
+      { expiresIn: '15m' }
   )
 
   // Create secure cookie with refresh token 
@@ -81,7 +81,7 @@ const refresh = (req, res) => {
                 }
             },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '1m' }
+            { expiresIn: '10s' }
         )
 
         res.json({ accessToken })
@@ -89,15 +89,16 @@ const refresh = (req, res) => {
   )
 }
 
-//@desc Logout
-//@route POST /api/auth/logout
-//@access Public - just to clear cookie if exists
+// @desc Logout
+// @route POST /auth/logout
+// @access Public - just to clear cookie if exists
 const logout = (req, res) => {
   const cookies = req.cookies
   if (!cookies?.jwt) return res.sendStatus(204) //No content
   res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true })
   res.json({ message: 'Cookie cleared' })
 }
+
 
 module.exports = {
     login,
