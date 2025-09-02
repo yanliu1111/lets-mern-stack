@@ -19,7 +19,7 @@ const Login = () => {
     const [login, { isLoading }] = useLoginMutation()
 
     useEffect(() => {
-        userRef.current.focus()
+        userRef.current?.focus()
     }, [])
 
     useEffect(() => {
@@ -28,27 +28,41 @@ const Login = () => {
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+    
         try {
-            const { accessToken } = await login({ username, password }).unwrap()
-            dispatch(setCredentials({ accessToken }))
-            setUsername('')
-            setPassword('')
-            navigate('/dash')
+            // Attempt to log in
+            const { accessToken } = await login({ username, password }).unwrap();
+    
+            // Dispatch the access token to Redux
+            dispatch(setCredentials({ accessToken }));
+    
+            // Clear the input fields
+            setUsername('');
+            setPassword('');
+    
+            // Navigate to the dashboard
+            navigate('/dash');
         } catch (err) {
-            if (!err.status) {
+            // Log the error for debugging
+            console.error('Login error:', err);
+    
+            // Handle specific error cases
+            if (!err?.status) {
                 setErrMsg('No Server Response');
             } else if (err.status === 400) {
                 setErrMsg('Missing Username or Password');
             } else if (err.status === 401) {
                 setErrMsg('Unauthorized');
             } else {
-                setErrMsg(err.data?.message);
+                setErrMsg(err.data?.message || 'Login Failed');
             }
-            errRef.current.focus();
+    
+            // Focus on the error message element if it exists
+            errRef?.current?.focus();
         }
-    }
-
+    };
+    
     const handleUserInput = (e) => setUsername(e.target.value)
     const handlePwdInput = (e) => setPassword(e.target.value)
     const handleToggle = () => setPersist(prev => !prev) // checkbox to persist login

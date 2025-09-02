@@ -1,4 +1,4 @@
-import jwtDecode from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode';
 import { selectCurrentToken } from "../features/auth/authSlice"
 import { useSelector } from 'react-redux'
 
