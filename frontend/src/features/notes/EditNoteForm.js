@@ -3,10 +3,11 @@ import { useDeleteNoteMutation, useUpdateNoteMutation } from "./notesApiSlice"
 import { useEffect, useState } from "react"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import useAuth from "../../hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 
 const EditNoteForm = ({ note, users }) => {
-
+    const { isManager, isAdmin } = useAuth()
     const [updateNote, {
         isLoading,
         isSuccess,
@@ -73,7 +74,18 @@ const EditNoteForm = ({ note, users }) => {
     const validTextClass = !text ? "form__input--incomplete" : ''
 
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
-
+    let deleteButton = null
+    if (isManager || isAdmin) {
+        deleteButton = (
+            <button
+                className="icon-button"
+                title="Delete"
+                onClick={onDeleteNoteClicked}
+            >
+                <FontAwesomeIcon icon={faTrashCan} />
+            </button>
+        )
+    }
     const content = (
         <>
             <p className={errClass}>{errContent}</p>
@@ -90,13 +102,7 @@ const EditNoteForm = ({ note, users }) => {
                         >
                             <FontAwesomeIcon icon={faSave} />
                         </button>
-                        <button
-                            className="icon-button"
-                            title="Delete"
-                            onClick={onDeleteNoteClicked}
-                        >
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </button>
+                        {deleteButton}
                     </div>
                 </div>
                 <label className="form__label" htmlFor="note-title">
