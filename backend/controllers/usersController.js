@@ -26,7 +26,11 @@ const createNewUser = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'All fields are required' });
     }
     //check for duplicate
-    const duplicate = await User.findOne({ username }).collation({locale:'en', strength:2}).lean.exec(); // exec() means execute the query
+    // Check for duplicate username (case-insensitive)
+    const duplicate = await User.findOne({ username })
+        .collation({ locale: 'en', strength: 2 }) // Case-insensitive collation
+        .lean() // Return plain JavaScript object
+        .exec(); // Execute the query
     if (duplicate) {
         return res.status(409).json({ message: 'Duplicate username' });
     }
