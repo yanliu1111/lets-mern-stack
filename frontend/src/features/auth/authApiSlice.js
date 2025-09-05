@@ -24,8 +24,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
                     setTimeout(() => {
                         dispatch(apiSlice.util.resetApiState())
                     }, 1000)
+                // Navigate to the home page
+                window.location.href = '/'; 
                 } catch (err) {
-                    console.log(err)
+                    console.log('Logout failed:', err)
                 }
             }
         }),

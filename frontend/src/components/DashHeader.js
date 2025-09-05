@@ -30,7 +30,11 @@ const DashHeader = () => {
     }] = useSendLogoutMutation()
 
     useEffect(() => {
-        if (isSuccess) navigate('/')
+        //console.log('isSuccess',isSuccess)
+        if (isSuccess) {
+            //console.log('logout successful')
+            navigate('/')
+        }
     }, [isSuccess, navigate])
 
     const onNewNoteClicked = () => navigate('/dash/notes/new')
