@@ -1,4 +1,4 @@
-# 📓 Busy Bee🐝techNotes – Secure Employee Notes & Task Management System
+# 📓 Busy Bees🐝techNotes – Secure Employee Notes & Task Management System
 
 **Project Summary:**
 techNotes is a web-based replacement for traditional sticky notes, designed to streamline task and note management in a workplace setting. The system provides role-based access for Employees, Managers, and Admins, ensuring secure handling of tasks through authentication and weekly login requirements. Notes are tracked with ticket numbers, titles, and timestamps, and can only be deleted by Managers or Admins. Employees manage their own assigned notes, while Managers and Admins oversee all notes and user settings. The platform emphasizes security, role clarity, and quick removal of employee access when needed, with a responsive design that supports both desktop and mobile use.
