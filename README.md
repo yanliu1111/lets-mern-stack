@@ -1,6 +1,11 @@
-# User Stories for techNotes
+# 📓 techNotes – Secure Employee Notes & Task Management System
 
-1. [ ] Replace current sticky note system
+**Project Summary:**
+techNotes is a web-based replacement for traditional sticky notes, designed to streamline task and note management in a workplace setting. The system provides role-based access for Employees, Managers, and Admins, ensuring secure handling of tasks through authentication and weekly login requirements. Notes are tracked with ticket numbers, titles, and timestamps, and can only be deleted by Managers or Admins. Employees manage their own assigned notes, while Managers and Admins oversee all notes and user settings. The platform emphasizes security, role clarity, and quick removal of employee access when needed, with a responsive design that supports both desktop and mobile use.
+
+## 🎯 User Stories for techNotes
+
+1. [x] Replace current sticky note system
 2. [x] Add a public facing page with basic contact info 
 3. [x] Add an employee login to the notes app 
 4. [x] Provide a welcome page after login 
@@ -13,15 +18,15 @@
 11. [x] **Notes** have a ticket #, title, note body, created & updated dates
 12. [x] Notes are either OPEN or COMPLETED 
 13. [x] Users can be 🙋‍♂️Employees, 🙎‍♀️Managers, or 👨Admins 
-14. [ ] Notes can **only be deleted by Managers or Admins** 
-15. [ ] **Anyone can create** a note (when customer checks-in)
-16. [ ] Employees can **only view and edit** their assigned notes  
-17. [ ] **Managers and Admins can view, edit, and delete** all notes 
-18. [ ] **Only Managers and Admins** can **access** User Settings 
-19. [ ] Only Managers and Admins can **create** new users 
+14. [x] Notes can **only be deleted by Managers or Admins** 
+15. [x] **Anyone can create** a note (when customer checks-in)
+16. [x] Employees can **only view and edit** their assigned notes  
+17. [x] **Managers and Admins can view, edit, and delete** all notes 
+18. [x] **Only Managers and Admins** can **access** User Settings 
+19. [x] Only Managers and Admins can **create** new users 
 20. [x] Desktop mode is most important but should be available in **mobile** 
 
-## Tech Stack:
+## 👩‍💻 Tech Stack:
 - React
 - Redux Toolkit (RTK) with RTK Query
 - React Router
@@ -36,8 +41,8 @@
 - JWT for authentication
 - Roles & Permissions
 
-## Case study: 
-### Case 1: Extending Data Cache Duration with Prefetching in RTK Query
+## 🧠 Case study: 
+### 🎈Case 1: Extending Data Cache Duration with Prefetching in RTK Query
 
 1. In `userApiSlice.js`, the option `keepUnusedDataFor: 5` means that when there is no active subscription to the data, it will be removed from the cache after 5 seconds.  
    - If this line is removed, the default cache duration is 60 seconds.  
@@ -53,7 +58,7 @@
 4. In `app.js`, wrap the routes for `/dash/*` with the `<Prefetch />` component.  
    - This ensures the data stays “warm” in the cache and reduces unnecessary refetching.
 
-### Case 2: Real-Time Updates Across Multiple Users’ Screens
+### 🎈Case 2: Real-Time Updates Across Multiple Users’ Screens
 
 In this scenario, the application allows updates made in a single note form to be reflected for all listed users in real time.  
 When more than one person is working with the same list of data, it’s important to have **up-to-date reference data** for any changes.
@@ -81,7 +86,7 @@ const {
 });
 ```
 
-### Learning JWT Authentication and Authorization
+### 🎈Learning JWT Authentication and Authorization
 - JWT is Json Web Token, access token and a refresh token
 - Access token is short lived, usually 15 minutes to an hour
 - Refresh token is long lived, usually a week or more
@@ -90,7 +95,8 @@ const {
 - Access Token: Issued after Authentication, Client uses for API Access until expires, Verified with Middleware, New token issued with Refresh Token
 - Refresh Token: Issued along with Access Token, Sent as HttpOnly cookie, Used to obtain new Access Token when expired, Verified with Middleware
 
-3.RTK Query cache, we are going to use the `useGetNotesQuery` hook to get the notes from the cache. We are going to use the selectFromResult option to get the specific note we want to edit. Refactor in `Note.js` and `EditNote.js`, same as User
+### 🎈RTK Query cache helps refactor
+We are going to use the `useGetNotesQuery` hook to get the notes from the cache. We are going to use the selectFromResult option to get the specific note we want to edit. Refactor in `Note.js` and `EditNote.js`, same as User
 ```js
     const { note } = useGetNotesQuery("notesList", {
         selectFromResult: ({ data }) => ({
@@ -98,4 +104,6 @@ const {
         }),
     })
 ```
+
+### 🚀Keep coding keep learning!
 
