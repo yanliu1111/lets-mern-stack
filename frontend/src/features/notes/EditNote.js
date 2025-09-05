@@ -10,9 +10,11 @@ const EditNote = () => {
     useTitle('techNotes: Edit Note')
 
     const { id } = useParams()
-
+    // we need to know who the user is, so we can determine if they have access to edit this note. We get that from our useAuth custom hook.
     const { username, isManager, isAdmin } = useAuth()
 
+
+    // RTK Query cache, we are going to use the useGetNotesQuery hook to get the notes from the cache. We are going to use the selectFromResult option to get the specific note we want to edit.
     const { note } = useGetNotesQuery("notesList", {
         selectFromResult: ({ data }) => ({
             note: data?.entities[id]
