@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 
+import PulseLoader from 'react-spinners/PulseLoader'
 import { setCredentials } from './authSlice'
 import { useDispatch } from 'react-redux'
 import { useLoginMutation } from './authApiSlice'
@@ -68,8 +69,9 @@ const Login = () => {
     const handleToggle = () => setPersist(prev => !prev) // checkbox to persist login
     const errClass = errMsg ? "errmsg" : "offscreen"
 
-    if (isLoading) return <p>Loading...</p>
-
+    //if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <PulseLoader color={"#FFF"} />
+    
     const content = (
         <section className="public">
             <header>
