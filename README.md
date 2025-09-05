@@ -90,5 +90,12 @@ const {
 - Access Token: Issued after Authentication, Client uses for API Access until expires, Verified with Middleware, New token issued with Refresh Token
 - Refresh Token: Issued along with Access Token, Sent as HttpOnly cookie, Used to obtain new Access Token when expired, Verified with Middleware
 
-
+3.RTK Query cache, we are going to use the `useGetNotesQuery` hook to get the notes from the cache. We are going to use the selectFromResult option to get the specific note we want to edit. Refactor in `Note.js` and `EditNote.js`, same as User
+```js
+    const { note } = useGetNotesQuery("notesList", {
+        selectFromResult: ({ data }) => ({
+            note: data?.entities[id]
+        }),
+    })
+```
 
